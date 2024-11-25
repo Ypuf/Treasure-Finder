@@ -34,15 +34,15 @@ jobs:
         with:
           name: ${{ runner.os }} Build
           path: |
-            build/dist/treasureFinder.dist/*.exe
+            build/treasureFinder.dist/*.exe
             build/*/*.exe
           include-hidden-files: true
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
-          name: Release ${{ github.ref }}
+          tag_name: Release
           generate_release_notes: true
           files: |
-            build/dist/treasureFinder.dist/*.exe
+            build/treasureFinder.dist/*.exe
             build/*/*.exe
