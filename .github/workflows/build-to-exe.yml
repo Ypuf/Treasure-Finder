@@ -28,12 +28,21 @@ jobs:
           mode: standalone
           enable-plugins: pyqt6
           windows-icon-from-ico: icon.ico
+          output-dir: "dist"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }} Build
           path: |
-            build/*.exe
+            build/dist/*.exe
             build/*/*.exe
           include-hidden-files: true
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
+          files: |
+            build/dist/*.exe
+            build/*/*.exe
